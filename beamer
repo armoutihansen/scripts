@@ -1,0 +1,9 @@
+#!/bin/sh
+
+file=$(readlink -f "$1")
+dir=${file%/*}
+base="${file%.*}"
+
+cd "$dir" || exit
+
+pandoc "$file" -t beamer --include-in-header=./mystyle.tex -o "$base".pdf

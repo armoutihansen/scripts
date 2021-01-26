@@ -1,0 +1,6 @@
+#!/bin/bash
+
+string=$(lsusb)
+if [[ $string =*"Dock"*]]; then
+dockd --set docked
+fi

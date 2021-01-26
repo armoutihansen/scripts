@@ -1,0 +1,13 @@
+#!/bin/sh
+
+showcorona() { curl -sf "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html" 2>/dev/null | grep -i table | awk -F'</*td>' '{print $57 $59}' | sed 's/<\/strong>/ /g; s/<[^>]*>//g;' | head -n 2 | tail -1 | awk -F' ' '{print "😷" $1 " (" $2 ")"}' ;}
+
+case $BLOCK_BUTTON in
+	1) setsid -f "$BROWSER" "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html" ;;
+	3) notify-send "😷 Corona module (RKI/Germany)" "\- Right click for full report in the browser.
+1st number: Daily infections
+2nd number: 7 days average per 100.000" ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+showcorona

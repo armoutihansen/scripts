@@ -1,0 +1,4 @@
+#!/bin/sh
+
+xinput set-prop 11 300 1 # tapping
+xinput set-prop 11 308 1 # natural scrolling
