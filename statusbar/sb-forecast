@@ -9,7 +9,7 @@
 weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
 weatherstatus="${XDG_DATA_HOME:-$HOME/.local/share}/weatherstatus"
 getforecast() { curl -sf "wttr.in/$LOCATION" > "$weatherreport" || exit 1 ;}
-getstatus() { curl "wttr.in/Cologne?format=%c%t+🌧%p+%w+%m%M" > "$weatherstatus" || exit 1 ;}
+getstatus() { curl "wttr.in/Cologne?format=%c%t+%p+%w+%m+%M" > "$weatherstatus" || exit 1 ;}
 
 # Some very particular and terse stream manipulation. We get the maximum
 # precipitation chance and the daily high and low from the downloaded file and
@@ -22,7 +22,7 @@ showstatus() { cat "$weatherstatus" ;}
 
 case $BLOCK_BUTTON in
 	1) setsid -f "$TERMINAL" -e less -Srf "$weatherreport" ;;
-	2) getforecast && showweather ;;
+	2) getstatus && showstatus ;;
 	3) notify-send "🌈 Weather module" "\- Left click for full forecast.
 - Middle click to update forecast.
 ☔: Chance of rain/snow

@@ -9,4 +9,4 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-echo "💡" "$(xbacklight -get)" "%" | sed 's/ //g'
+echo "💡;" "$(xbacklight -get)" "%" | sed 's/ //g; s/;/ /g'
